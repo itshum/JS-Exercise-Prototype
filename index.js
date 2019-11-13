@@ -43,6 +43,26 @@ function Person() {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -72,15 +92,19 @@ function Baby() {
 
 }
 
-/* 
+
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
-*/
+
+  1. Implicit Binding - Most common rule and found in 80% of use cases when we develop. When function is invoke we look to the left of the dot and that's what the the this keyword is referring to. 
+
+  2. Explicit Binding - call, apply, bind, all of the above allow us to explicitly state what the this keyword refers to in any given function.
+
+  3. Binding - Creates a new function that binds, invoking it when we need it. 
+
+  4. New Binding - Using the new keyword constructs a new object and this points to it. 
+
 
 
 ///////// END OF CHALLENGE /////////
