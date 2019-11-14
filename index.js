@@ -82,6 +82,8 @@ Person.prototype.toString = function(){
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
+
+
 function Car(model, milesPerGallon) {
   this.model = model;
   this.milesPerGallon = milesPerGallon;
@@ -91,8 +93,37 @@ function Car(model, milesPerGallon) {
 }
 
 Car.prototype.fill = function(gallons) {
+  
   this.tank = this.tank + (gallons);
 }
+
+Car.prototype.drive = function(distance) {
+  // this.miles = this.odometer + (distance);
+  const fuelNeeded = (distance)/this.milesPerGallon;
+  // this.tank = this.tank - fuelNeeded;
+  // If my need for more fuel goes over the current amount of my fuel in my tank 
+  if (fuelNeeded > this.tank) {
+  //  Drive whatever distance we can 
+  const maxDistance = this.miles * this.milesPerGallon;
+  // Update the odometer reading 
+  this.odometer = maxDistance + this.odometer;
+  //  We're using up all of our fuel
+  this.tank = 0;
+  return `I ran out of fuel ${this.odometer} miles!`;
+  // return this string that you ran out of fuel since your tank is at zero. 
+
+  }
+
+// We have enough fuel to travel the entire distance  
+else {
+// We update tank/fuel 
+this.odometer = this.odometer + (distance);
+this.tank = this.tank - fuelNeeded;
+// Update the odometer because you're travelling 
+}
+
+}
+
 
 
 
