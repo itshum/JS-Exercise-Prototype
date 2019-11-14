@@ -30,7 +30,7 @@ Airplane.prototype.land = function () {
   TASK 1
     - Write a Person Constructor that initializes `name` and `age` from arguments.
     - All instances of Person should initialize with an empty `stomach` array.
-    - Give instances of Person the ability to `.eat("someFood")`:
+    - Give instances of Person the ability to `.eat("someFood")`: --> should be in prototype since you want it in every new object you create. 
         + When eating an edible, it should be pushed into the `stomach`.
         + The `eat` method should have no effect if there are 10 items in the `stomach`.
     - Give instances of Person the ability to `.poop()`:
@@ -39,9 +39,34 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 
 }
+
+Person.prototype.eat = function(someFood) { 
+if (this.stomach.length<10) {
+this.stomach.push(someFood); 
+
+} 
+}
+
+Person.prototype.poop = function() {
+this.stomach = [];
+
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
+
+}
+
+
+
+
 
 /*
   TASK 2
@@ -57,9 +82,50 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+
+
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 
 }
+
+Car.prototype.fill = function(gallons) {
+  
+  this.tank = this.tank + (gallons);
+}
+
+Car.prototype.drive = function(distance) {
+  // this.miles = this.odometer + (distance);
+  const fuelNeeded = (distance)/this.milesPerGallon;
+  // this.tank = this.tank - fuelNeeded;
+  // If my need for more fuel goes over the current amount of my fuel in my tank 
+  if (fuelNeeded > this.tank) {
+  //  Drive whatever distance we can 
+  const maxDistance = this.tank * this.milesPerGallon;
+  // Update the odometer reading 
+  this.odometer = maxDistance + this.odometer;
+  //  We're using up all of our fuel
+  this.tank = 0;
+  return `I ran out of fuel ${this.odometer} miles!`;
+  // return this string that you ran out of fuel since your tank is at zero. 
+
+  }
+
+// We have enough fuel to travel the entire distance  
+else {
+// We update tank/fuel 
+this.odometer = this.odometer + (distance);
+this.tank = this.tank - fuelNeeded;
+// Update the odometer because you're travelling 
+}
+
+}
+
+
+
 
 /*
   TASK 3
@@ -68,24 +134,44 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
 
+
+
+Baby.prototype = Object.create(Person.prototype);
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age)
+  this.favoriteToy = favoriteToy;
 }
 
-/* 
-  TASK 4
+Baby.prototype.play = function (){
+  return "Playing with " + this.favoriteToy;
+}
 
-  In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
-*/
+// var newBaby = new Baby("Hum", 30, "toy truck");
+
+
+
+
+
+  // TASK 4
+
+  // In your own words explain the four principles for the "this" keyword below:
+
+  // 1. Implicit Binding - Most common rule and found in 80% of use cases when we develop. When function is invoke we look to the left of the dot and that's what the the this keyword is referring to. 
+
+  // 2. Explicit Binding - call, apply, bind, all of the above allow us to explicitly state what the this keyword refers to in any given function.
+
+  // 3. Binding - Creates a new function that binds, invoking it when we need it. 
+
+  // 4. New Binding - Using the new keyword constructs a new object and this points to it. 
+
+
 
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
+
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
   if (Airplane) { module.exports.Airplane = Airplane }
