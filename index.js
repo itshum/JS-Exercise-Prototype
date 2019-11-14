@@ -39,21 +39,22 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
+
 function Person(name, age) {
   this.name = name;
   this.age = age;
   this.stomach = [];
-  
+
 }
 
-Person.prototype.eat = function(someFood){ 
+Person.prototype.eat = function(someFood) { 
 if (this.stomach.length<10) {
 this.stomach.push(someFood); 
 
- } 
+} 
 }
 
-Person.prototype.poop = function(){
+Person.prototype.poop = function() {
 this.stomach = [];
 
 }
@@ -61,14 +62,7 @@ this.stomach = [];
 Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`
 
-  }
-
-
-
-// Pet.prototype.eat = function(){
-//   return `${this.newName} is a ${this.newSpecies} and ${this.newPronoun} likes to eat ${this.newFavFood}`;
-// }
-
+}
 
 
 
@@ -89,8 +83,19 @@ Person.prototype.toString = function(){
 */
 
 function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 
 }
+
+Car.prototype.fill = function(gallons) {
+  this.tank.push(gallons);
+}
+
+
+
 
 /*
   TASK 3
@@ -99,11 +104,20 @@ function Car(model, milesPerGallon) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
 
+
+
+Baby.prototype = Object.create(Person.prototype);
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age)
+  this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype.play = function (){
+  return "Playing with " + this.favoriteToy;
+}
 
+var newBaby = new Baby("Hum", 30, "toy truck");
 
 
 
@@ -123,9 +137,11 @@ function Baby() {
 
 
 
+
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
+
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
   if (Airplane) { module.exports.Airplane = Airplane }
