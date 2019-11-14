@@ -46,10 +46,22 @@ function Person(name, age) {
   
 }
 
-Person.prototype.eat = function(someFood){
+Person.prototype.eat = function(someFood){ 
+if (this.stomach.length<10) {
 this.stomach.push(someFood); 
 
+ } 
 }
+
+Person.prototype.poop = function(){
+this.stomach = [];
+
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
+
+  }
 
 
 
@@ -76,7 +88,7 @@ this.stomach.push(someFood);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
 
 }
 
@@ -97,17 +109,17 @@ function Baby() {
 
 
 
-  TASK 4
+  // TASK 4
 
-  In your own words explain the four principles for the "this" keyword below:
+  // In your own words explain the four principles for the "this" keyword below:
 
-  1. Implicit Binding - Most common rule and found in 80% of use cases when we develop. When function is invoke we look to the left of the dot and that's what the the this keyword is referring to. 
+  // 1. Implicit Binding - Most common rule and found in 80% of use cases when we develop. When function is invoke we look to the left of the dot and that's what the the this keyword is referring to. 
 
-  2. Explicit Binding - call, apply, bind, all of the above allow us to explicitly state what the this keyword refers to in any given function.
+  // 2. Explicit Binding - call, apply, bind, all of the above allow us to explicitly state what the this keyword refers to in any given function.
 
-  3. Binding - Creates a new function that binds, invoking it when we need it. 
+  // 3. Binding - Creates a new function that binds, invoking it when we need it. 
 
-  4. New Binding - Using the new keyword constructs a new object and this points to it. 
+  // 4. New Binding - Using the new keyword constructs a new object and this points to it. 
 
 
 
