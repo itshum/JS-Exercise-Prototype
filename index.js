@@ -104,7 +104,7 @@ Car.prototype.drive = function(distance) {
   // If my need for more fuel goes over the current amount of my fuel in my tank 
   if (fuelNeeded > this.tank) {
   //  Drive whatever distance we can 
-  const maxDistance = this.miles * this.milesPerGallon;
+  const maxDistance = this.tank * this.milesPerGallon;
   // Update the odometer reading 
   this.odometer = maxDistance + this.odometer;
   //  We're using up all of our fuel
@@ -147,7 +147,7 @@ Baby.prototype.play = function (){
   return "Playing with " + this.favoriteToy;
 }
 
-var newBaby = new Baby("Hum", 30, "toy truck");
+// var newBaby = new Baby("Hum", 30, "toy truck");
 
 
 
